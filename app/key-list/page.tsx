@@ -77,8 +77,8 @@ const KeyList = () => {
                     columns={columns}
                     rowKey="id"
                     // scroll={{ x: 'max-content' }}
-                    pagination={{ pageSize: 5 }}
                     className="min-w-[600px]"
+                    pagination={false}
                 />
             </div>
 

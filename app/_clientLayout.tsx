@@ -21,7 +21,7 @@ export default function ClientLayout({
       <Provider store={store}>
           <MenuHeader />
 
-          <div className={`mt-[150px]`}>
+          <div className={`mt-[${pathname !== "/key-list" ? 150 : 100}px]`}>
               {children}
           </div>
       </Provider>
