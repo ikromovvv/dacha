@@ -2,11 +2,12 @@
 
 import { useSelector } from "react-redux";
 import type { RootState } from "@/store/store";
-import MovieInfo from "@/components/user-info/movie-info";
+
 import MovieGrid from "@/components/movie-grid";
 import { ArrowLeft } from "lucide-react";
 import { List, Input, Button, Form, Rate } from "antd";
 import { useState } from "react";
+import EmployeeInfo from "@/components/user-info/movie-info";
 
 export const MovieDetail = ({ id }: any) => {
     const { employees } = useSelector((state: RootState) => state.employees);
@@ -49,7 +50,7 @@ export const MovieDetail = ({ id }: any) => {
 
     return (
         <div className="min-h-screen bg-background text-foreground container mx-auto sm:px-[25px] px-[15px] py-[15px]">
-            <MovieInfo emp={emp} />
+            <EmployeeInfo emp={emp} />
 
             <div className="mt-8">
                 <h2 className="text-2xl font-bold mb-4">Kommentlar</h2>
