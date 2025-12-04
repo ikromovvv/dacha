@@ -73,10 +73,11 @@ export default function Header({
                     </div>
                 </div>
 
-                <button onClick={() => setActive(true)}>Kirish</button>
 
                 {/* RIGHT SIDE — USER + LANG */}
-                {/*<div className="flex items-center gap-[15px]">*/}
+                <div className="flex items-center gap-[15px]">
+                    <button onClick={() => setActive(true)}>Kirish</button>
+
                 {/*    /!* User avatar + name (hidden on mobile) *!/*/}
                 {/*    <div className="relative">*/}
                 {/*        <div*/}
@@ -110,44 +111,44 @@ export default function Header({
                 {/*    </div>*/}
 
                 {/*    /!* Language selector *!/*/}
-                {/*    <div className="relative">*/}
-                {/*        <button*/}
-                {/*            onClick={() => setLangDropdown(!langDropdown)}*/}
-                {/*            className="w-[40px] h-[40px] rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center"*/}
-                {/*        >*/}
-                {/*            <Globe size={20} />*/}
-                {/*        </button>*/}
+                    <div className="relative">
+                        <button
+                            onClick={() => setLangDropdown(!langDropdown)}
+                            className="w-[40px] h-[40px] rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center"
+                        >
+                            <Globe size={20} />
+                        </button>
 
-                {/*        {langDropdown && (*/}
-                {/*            <div className="absolute right-0 mt-2 w-[120px] bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden">*/}
-                {/*                <button*/}
-                {/*                    onClick={() => changeLanguage("UZ")}*/}
-                {/*                    className={`w-full text-left px-4 py-2 hover:bg-muted transition ${*/}
-                {/*                        language === "UZ" ? "font-bold" : ""*/}
-                {/*                    }`}*/}
-                {/*                >*/}
-                {/*                    Uzbek*/}
-                {/*                </button>*/}
-                {/*                <button*/}
-                {/*                    onClick={() => changeLanguage("RU")}*/}
-                {/*                    className={`w-full text-left px-4 py-2 hover:bg-muted transition ${*/}
-                {/*                        language === "RU" ? "font-bold" : ""*/}
-                {/*                    }`}*/}
-                {/*                >*/}
-                {/*                    Russian*/}
-                {/*                </button>*/}
-                {/*                <button*/}
-                {/*                    onClick={() => changeLanguage("EN")}*/}
-                {/*                    className={`w-full text-left px-4 py-2 hover:bg-muted transition ${*/}
-                {/*                        language === "EN" ? "font-bold" : ""*/}
-                {/*                    }`}*/}
-                {/*                >*/}
-                {/*                    ENGLISH*/}
-                {/*                </button>*/}
-                {/*            </div>*/}
-                {/*        )}*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                        {langDropdown && (
+                            <div className="absolute right-0 mt-2 w-[120px] bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden">
+                                <button
+                                    onClick={() => changeLanguage("UZ")}
+                                    className={`w-full text-left px-4 py-2 hover:bg-muted transition ${
+                                        language === "UZ" ? "font-bold" : ""
+                                    }`}
+                                >
+                                    Uzbek
+                                </button>
+                                <button
+                                    onClick={() => changeLanguage("RU")}
+                                    className={`w-full text-left px-4 py-2 hover:bg-muted transition ${
+                                        language === "RU" ? "font-bold" : ""
+                                    }`}
+                                >
+                                    Russian
+                                </button>
+                                <button
+                                    onClick={() => changeLanguage("EN")}
+                                    className={`w-full text-left px-4 py-2 hover:bg-muted transition ${
+                                        language === "EN" ? "font-bold" : ""
+                                    }`}
+                                >
+                                    English
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>
 
             <AuthorizationPage active={active} setActive={setActive} />

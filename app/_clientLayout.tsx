@@ -21,7 +21,7 @@ export default function ClientLayout({
       <Provider store={store}>
           <MenuHeader />
 
-          <div className={`mt-[${pathname !== "/key-list" ? 150 : 100}px]`}>
+          <div style={{marginTop: pathname !=="/key-list" ? "150px" : "100px"}}>
               {children}
           </div>
       </Provider>
