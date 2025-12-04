@@ -13,22 +13,22 @@ type MenuItemType = {
 export const menuConfigItem: MenuItemType[] = [
     {
         key: "/",
-        label: "Ofitsiantlar (Girgittonlar)",
+        label: "Ofitsiantlar",
         description: "Ushbu bo‘limda ofitsiantlar ro‘yxatini ko‘rib chiqishingiz, yangi ishchilar qo‘shishingiz va ularni boshqarishingiz mumkin.",
         path: "/",
         icon: <AppstoreOutlined />,
     },
     {
-        key: "/chefs",
+        key: "popular",
         label: "Oshpazlar",
         description: "Ushbu bo‘limda oshpazlar ro‘yxatini ko‘rib chiqishingiz, yangi oshpazlar qo‘shishingiz va ularning ish faoliyatini boshqarishingiz mumkin.",
         path: "/chefs",
         icon: <UserOutlined />, // Agar ishchi bilan mos icon ishlatamiz
     },
     {
-        key: "/mustwatch",
-        label: "Taksistlar (Dastafkachilar)",
-        description: "Bu bo‘limda taksistlar haqida ma’lumotlar, eng tavsiya etilgan vazifalar va statistikalarni topishingiz mumkin.",
+        key: "mustwatch",
+        label: "Kuryer va Taksistlar",
+        description: "Bu bo‘limda taksistlar va kuryerlar  haqida ma’lumotlar, eng tavsiya etilgan vazifalar va statistikalarni topishingiz mumkin.",
         path: "/mustwatch",
         icon: <CarOutlined />,
     },

@@ -1,6 +1,6 @@
 "use client"
 
-import Header from "@/components/header"
+import Header from "@/components/header/header"
 import {useParams} from "next/navigation";
 import {MovieDetail} from "@/app/[category]/[id]/movie-detail";
 

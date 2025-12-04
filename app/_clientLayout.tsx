@@ -6,6 +6,7 @@ import type React from "react"
 import { Provider } from "react-redux"
 import store from "@/store/store"
 import MenuHeader from "@/app/components/menuHeader/menuHeader";
+import {usePathname} from "next/navigation";
 
 
 export default function ClientLayout({
@@ -13,11 +14,14 @@ export default function ClientLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
+
+    const pathname = usePathname(); // masalan: /key-list
+
+    return (
       <Provider store={store}>
           <MenuHeader />
 
-          <div className="mt-[80px]">
+          <div className={`mt-[${pathname !== "/key-list" ? 150 : 100}px]`}>
               {children}
           </div>
       </Provider>

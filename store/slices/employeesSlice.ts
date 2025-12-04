@@ -12,6 +12,7 @@ export interface Employee {
   shift: string; // smena
   email: string;
   phone: string;
+  status: boolean
 }
 
 interface EmployeesState {
@@ -19,7 +20,7 @@ interface EmployeesState {
   currentEmployee: Employee | null;
 }
 
-const initialEmployees: Employee[] = [
+ const initialEmployees: Employee[] = [
   {
     id: "1",
     firstName: "Ali",
@@ -31,7 +32,8 @@ const initialEmployees: Employee[] = [
     rating: 9.2,
     shift: "09:00 - 18:00",
     email: "ali.karimov@example.com",
-    phone: "+998901234567"
+    phone: "+998901234567",
+    status: true
   },
   {
     id: "2",
@@ -44,7 +46,8 @@ const initialEmployees: Employee[] = [
     rating: 9.0,
     shift: "10:00 - 19:00",
     email: "bekzod.mirzayev@example.com",
-    phone: "+998901234570"
+    phone: "+998901234570",
+    status: false
   },
   {
     id: "3",
@@ -57,7 +60,8 @@ const initialEmployees: Employee[] = [
     rating: 8.8,
     shift: "09:00 - 17:00",
     email: "dilorom.saidova@example.com",
-    phone: "+998901234571"
+    phone: "+998901234571",
+    status: true
   },
   {
     id: "12",
@@ -70,7 +74,8 @@ const initialEmployees: Employee[] = [
     rating: 8.9,
     shift: "08:00 - 17:00",
     email: "bekzod.rahmatov@example.com",
-    phone: "+998901234572"
+    phone: "+998901234572",
+    status: true
   },
   {
     id: "15",
@@ -83,7 +88,8 @@ const initialEmployees: Employee[] = [
     rating: 9.3,
     shift: "09:00 - 18:00",
     email: "sardor.akbarov@example.com",
-    phone: "+998901234573"
+    phone: "+998901234573",
+    status: false
   },
   {
     id: "16",
@@ -96,7 +102,8 @@ const initialEmployees: Employee[] = [
     rating: 9.1,
     shift: "10:00 - 19:00",
     email: "laylo.rashidova@example.com",
-    phone: "+998901234574"
+    phone: "+998901234574",
+    status: true
   },
   {
     id: "17",
@@ -109,7 +116,8 @@ const initialEmployees: Employee[] = [
     rating: 8.9,
     shift: "08:00 - 17:00",
     email: "jasur.islomov@example.com",
-    phone: "+998901234575"
+    phone: "+998901234575",
+    status: false
   },
   {
     id: "18",
@@ -122,7 +130,8 @@ const initialEmployees: Employee[] = [
     rating: 9.0,
     shift: "09:00 - 18:00",
     email: "nigora.yusupova@example.com",
-    phone: "+998901234576"
+    phone: "+998901234576",
+    status: true
   },
   {
     id: "19",
@@ -135,7 +144,8 @@ const initialEmployees: Employee[] = [
     rating: 9.2,
     shift: "09:00 - 18:00",
     email: "davron.rahmonov@example.com",
-    phone: "+998901234577"
+    phone: "+998901234577",
+    status: true
   },
   {
     id: "20",
@@ -148,9 +158,10 @@ const initialEmployees: Employee[] = [
     rating: 9.1,
     shift: "10:00 - 19:00",
     email: "sevara.abdullayeva@example.com",
-    phone: "+998901234578"
+    phone: "+998901234578",
+    status: false
   }
-]
+];
 
 
 const employeesSlice = createSlice({

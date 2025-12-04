@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit"
 import filterReducer from "./slices/filterSlice"
 import headerSlice from "@/store/slices/headerSlice";
 import employeesSlice from "@/store/slices/employeesSlice";
+import keySlice from "@/store/slices/keySlice";
 
 const store = configureStore({
   reducer: {
     employees: employeesSlice,
     filter: filterReducer,
-    header: headerSlice
+    header: headerSlice,
+    key: keySlice
   },
 })
 
