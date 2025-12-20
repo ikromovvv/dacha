@@ -76,7 +76,7 @@ export default function Header({
 
                 {/* RIGHT SIDE — USER + LANG */}
                 <div className="flex items-center gap-[15px]">
-                    <button onClick={() => setActive(true)}>Kirish</button>
+                    {/*<button onClick={() => setActive(true)}>Kirish</button>*/}
 
                 {/*    /!* User avatar + name (hidden on mobile) *!/*/}
                 {/*    <div className="relative">*/}
