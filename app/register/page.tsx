@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { Form, Input, Select, Upload, Button, Card, ConfigProvider } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
