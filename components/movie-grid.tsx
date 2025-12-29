@@ -71,7 +71,7 @@ export default function MovieGrid() {
                         <div className="relative w-full h-64 overflow-hidden">
                             <img
                                 src={emp?.photos[0]?.image || "/placeholder.svg"}
-                                alt={emp.lastName}
+                                alt={emp?.lastName}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                             />
                             <div
@@ -86,14 +86,14 @@ export default function MovieGrid() {
                         {/*</div>*/}
 
                         <div className="p-4 space-y-2">
-                            <h3 className="font-bold text-lg text-balance line-clamp-2">{emp.first_name} {emp.last_name}</h3>
+                            <h3 className="font-bold text-lg text-balance line-clamp-2">{emp?.first_name} {emp?.last_name}</h3>
                             <div className="flex items-center justify-between text-sm">
-                                <span className="text-accent font-semibold">{emp.role}</span>
-                                <span className="text-yellow-400">★ {emp.rating}</span>
+                                <span className="text-accent font-semibold">{emp?.role.name}</span>
+                                <span className="text-yellow-400">★ {emp?.rating}</span>
                             </div>
-                            <p className="text-sm text-muted-foreground line-clamp-2">{emp.address}</p>
-                            <p className="text-sm text-muted-foreground line-clamp-2">{emp.description}</p>
-                            <p className="text-sm text-muted-foreground line-clamp-2">{emp.email}</p>
+                            <p className="text-sm text-muted-foreground line-clamp-2">{emp?.address}</p>
+                            <p className="text-sm text-muted-foreground line-clamp-2">{emp?.description}</p>
+                            <p className="text-sm text-muted-foreground line-clamp-2">{emp?.email}</p>
                         </div>
                     </div>
                 ))}

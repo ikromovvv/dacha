@@ -19,7 +19,7 @@ export default function EmployeeInfo({ emp }: any) {
           <div className="md:col-span-1">
             <img
                 src={emp.photos ? emp.photos[0]?.image : "" }
-                alt={`${emp.first_name} ${emp.last_name}`}
+                alt={`${emp?.first_name} ${emp?.last_name}`}
                 className="w-full rounded-lg shadow-2xl"
             />
           </div>
@@ -28,8 +28,8 @@ export default function EmployeeInfo({ emp }: any) {
           <div className="md:col-span-2 space-y-5">
             {/* Name and Role */}
             <div>
-              <h1 className="text-3xl font-bold mb-1">{emp.first_name} {emp.last_name}</h1>
-              <p className="text-accent font-semibold text-[18px]">{emp.role}</p>
+              <h1 className="text-3xl font-bold mb-1">{emp?.first_name} {emp?.last_name}</h1>
+              <p className="text-accent font-semibold text-[18px]">{emp?.role?.name}</p>
             </div>
 
             {/* Experience, Rating, Shift */}
@@ -51,7 +51,7 @@ export default function EmployeeInfo({ emp }: any) {
             {/* Description */}
             <div>
               <h2 className="text-[18px] font-bold mb-3">Role</h2>
-              <p className="text-[16px] text-muted-foreground leading-relaxed">{emp.role}</p>
+              <p className="text-[16px] text-muted-foreground leading-relaxed">{emp?.role?.name}</p>
             </div>
             {/*<div>*/}
             {/*  <h2 className="text-[18px] font-bold">Status</h2>*/}
@@ -65,14 +65,14 @@ export default function EmployeeInfo({ emp }: any) {
                   <Mail size={20} />
                   Email
                 </h3>
-                <p className="text-lg">{emp.email}</p>
+                <p className="text-lg">{emp?.email}</p>
               </div>
               <div>
                 <h3 className="text-[18px] font-bold mb-2 flex items-center gap-2">
                   <Phone size={20} />
                   Telefon
                 </h3>
-                <p className="text-lg">{emp.phone}</p>
+                <a href={`tel:${emp.phone_number}`} className="text-lg">{emp?.phone_number}</a>
               </div>
             </div>
 
