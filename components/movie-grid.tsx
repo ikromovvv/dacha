@@ -6,15 +6,27 @@ import {setCurrentEmployee} from "@/store/slices/employeesSlice";
 import {RootState} from "@/store/store";
 import {useRouter} from "next/navigation";
 import {Play} from "lucide-react";
+import {API_URL, headers, useHttp} from "@/api/api";
 
 export default function MovieGrid() {
     const dispatch = useDispatch();
-    const {employees} = useSelector((state: RootState) => state.employees);
+    const [employer , setEmployer] = useState([])
     const router = useRouter();
 
     const [category, setCategory] = useState<string | null>(null);
     const [categoryLabel, setCategoryLabel] = useState<string | null>(null);
     const [categoryDesc, setCategoryDesc] = useState<string | null>(null);
+
+    const {request} = useHttp()
+
+    useEffect(() => {
+        request(`${API_URL}auth/users/` , "GET" , null , headers())
+            .then(res => {
+                console.log(res)
+                setEmployer(res)
+            })
+    } , [])
+
 
     useEffect(() => {
         setCategory(localStorage.getItem("activeMenuItem"));
@@ -31,10 +43,10 @@ export default function MovieGrid() {
         }
     };
 
-    if (employees.length === 0) {
+    if (employer.length === 0) {
         return (
             <div className="text-center py-12">
-                <p className="text-2xl text-muted-foreground">No movies found. Try a different search!</p>
+                <p className="text-2xl text-muted-foreground">Hozircha foydalanuvchilar yo'q</p>
             </div>
         );
     }
@@ -50,7 +62,7 @@ export default function MovieGrid() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
 
-                {employees.map((emp) => (
+                {employer.map((emp: any) => (
                     <div
                         key={emp.id}
                         onClick={() => handleMovieClick(emp)}
@@ -58,7 +70,7 @@ export default function MovieGrid() {
                     >
                         <div className="relative w-full h-64 overflow-hidden">
                             <img
-                                src={emp.photo || "/placeholder.svg"}
+                                src={emp?.photos[0]?.image || "/placeholder.svg"}
                                 alt={emp.lastName}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                             />
@@ -74,12 +86,14 @@ export default function MovieGrid() {
                         {/*</div>*/}
 
                         <div className="p-4 space-y-2">
-                            <h3 className="font-bold text-lg text-balance line-clamp-2">{emp.firstName} {emp.lastName}</h3>
+                            <h3 className="font-bold text-lg text-balance line-clamp-2">{emp.first_name} {emp.last_name}</h3>
                             <div className="flex items-center justify-between text-sm">
                                 <span className="text-accent font-semibold">{emp.role}</span>
                                 <span className="text-yellow-400">★ {emp.rating}</span>
                             </div>
+                            <p className="text-sm text-muted-foreground line-clamp-2">{emp.address}</p>
                             <p className="text-sm text-muted-foreground line-clamp-2">{emp.description}</p>
+                            <p className="text-sm text-muted-foreground line-clamp-2">{emp.email}</p>
                         </div>
                     </div>
                 ))}

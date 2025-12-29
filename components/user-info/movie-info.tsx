@@ -4,7 +4,7 @@ import { Calendar, Clock, Star, User, Phone, Mail } from "lucide-react"
 import { Employee } from "@/store/slices/employeesSlice"
 import {useRouter} from "next/navigation";
 
-export default function EmployeeInfo({ emp }: { emp: Employee }) {
+export default function EmployeeInfo({ emp }: any) {
 
   const router = useRouter();
 
@@ -18,8 +18,8 @@ export default function EmployeeInfo({ emp }: { emp: Employee }) {
           {/* Left Column - Photo */}
           <div className="md:col-span-1">
             <img
-                src={emp.photo || "/placeholder.svg"}
-                alt={`${emp.firstName} ${emp.lastName}`}
+                src={emp.photos ? emp.photos[0]?.image : "" }
+                alt={`${emp.first_name} ${emp.last_name}`}
                 className="w-full rounded-lg shadow-2xl"
             />
           </div>
@@ -28,35 +28,35 @@ export default function EmployeeInfo({ emp }: { emp: Employee }) {
           <div className="md:col-span-2 space-y-5">
             {/* Name and Role */}
             <div>
-              <h1 className="text-3xl font-bold mb-1">{emp.firstName} {emp.lastName}</h1>
+              <h1 className="text-3xl font-bold mb-1">{emp.first_name} {emp.last_name}</h1>
               <p className="text-accent font-semibold text-[18px]">{emp.role}</p>
             </div>
 
             {/* Experience, Rating, Shift */}
-            <div className="flex flex-wrap gap-6 text-lg">
-              <div className="flex items-center gap-2">
-                <Star size={20} className="text-yellow-400" />
-                <span className="font-semibold">{emp.rating}/10</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Calendar size={20} className="text-primary" />
-                <span className="font-semibold">{emp.experience} yil tajriba</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock size={20} className="text-primary" />
-                <span className="font-semibold">{emp.shift}</span>
-              </div>
-            </div>
+            {/*<div className="flex flex-wrap gap-6 text-lg">*/}
+            {/*  <div className="flex items-center gap-2">*/}
+            {/*    <Star size={20} className="text-yellow-400" />*/}
+            {/*    <span className="font-semibold">{emp.rating}/10</span>*/}
+            {/*  </div>*/}
+            {/*  <div className="flex items-center gap-2">*/}
+            {/*    <Calendar size={20} className="text-primary" />*/}
+            {/*    <span className="font-semibold">{emp.email} email</span>*/}
+            {/*  </div>*/}
+            {/*  <div className="flex items-center gap-2">*/}
+            {/*    <Clock size={20} className="text-primary" />*/}
+            {/*    <span className="font-semibold">{emp.address}</span>*/}
+            {/*  </div>*/}
+            {/*</div>*/}
 
             {/* Description */}
             <div>
-              <h2 className="text-[18px] font-bold mb-3">Ta’rif</h2>
-              <p className="text-[16px] text-muted-foreground leading-relaxed">{emp.description}</p>
+              <h2 className="text-[18px] font-bold mb-3">Role</h2>
+              <p className="text-[16px] text-muted-foreground leading-relaxed">{emp.role}</p>
             </div>
-            <div>
-              <h2 className="text-[18px] font-bold">Status</h2>
-              <p className="text-[16px] text-muted-foreground leading-relaxed">{emp.status ? "online" : "offline"}</p>
-            </div>
+            {/*<div>*/}
+            {/*  <h2 className="text-[18px] font-bold">Status</h2>*/}
+            {/*  <p className="text-[16px] text-muted-foreground leading-relaxed">{emp.status ? "online" : "offline"}</p>*/}
+            {/*</div>*/}
 
             {/* Contact Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
