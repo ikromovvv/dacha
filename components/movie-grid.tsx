@@ -3,10 +3,12 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrentEmployee} from "@/store/slices/employeesSlice";
-import {RootState} from "@/store/store";
+
 import {useRouter} from "next/navigation";
-import {Play} from "lucide-react";
+
 import {API_URL, headers, useHttp} from "@/api/api";
+import {Riple} from "react-loading-indicators";
+import {RootState} from "@/store/store";
 
 export default function MovieGrid() {
     const dispatch = useDispatch();
@@ -16,14 +18,20 @@ export default function MovieGrid() {
     const [category, setCategory] = useState<string | null>(null);
     const [categoryLabel, setCategoryLabel] = useState<string | null>(null);
     const [categoryDesc, setCategoryDesc] = useState<string | null>(null);
-
     const {request} = useHttp()
+    const [loading , setLoading] = useState(true)
+
+
+    const {activeMenuName} = useSelector((state : RootState) => state.header)
+
+
 
     useEffect(() => {
         request(`${API_URL}auth/users/` , "GET" , null , headers())
             .then(res => {
                 console.log(res)
                 setEmployer(res)
+                setLoading(false)
             })
     } , [])
 
@@ -32,7 +40,7 @@ export default function MovieGrid() {
         setCategory(localStorage.getItem("activeMenuItem"));
         setCategoryLabel(localStorage.getItem("activeMenuLabel"));
         setCategoryDesc(localStorage.getItem("activeMenuName"));
-    }, []);
+    }, [category]);
 
     const handleMovieClick = (emp: any) => {
         dispatch(setCurrentEmployee(emp));
@@ -43,7 +51,7 @@ export default function MovieGrid() {
         }
     };
 
-    if (employer.length === 0) {
+    if (employer.length === 0 && !loading) {
         return (
             <div className="text-center py-12">
                 <p className="text-2xl text-muted-foreground">Hozircha foydalanuvchilar yo'q</p>
@@ -51,18 +59,21 @@ export default function MovieGrid() {
         );
     }
 
+    if(loading) {
+        return <div style={{position: "absolute" ,  top: "50%" , left: "50%" , transform: "translate(-50%, -50%)"}}> <Riple color="#548954" size="large" text="" textColor=""  /></div>
+    }
+
     return (
         <div className={"p-5"}>
 
-            <div className={"mb-4 sm:hidden block flex flex-col"}>
-               <span className={"text-[16px]"}> {categoryLabel ? categoryLabel : "Asosiy bo'lim"}</span>
-                <span className={"text-[grey] text-[14px]"}>{categoryDesc}</span>
-
-            </div>
+            {/*<div className={"mb-4 sm:hidden block flex flex-col"}>*/}
+            {/*   <span className={"text-[16px]"}> {categoryLabel ? categoryLabel : "Asosiy bo'lim"}</span>*/}
+            {/*    <span className={"text-[grey] text-[14px]"}>{categoryDesc}</span>*/}
+            {/*</div>*/}
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
 
-                {employer.map((emp: any) => (
+                {employer.filter((emp : any) => emp?.role?.name === activeMenuName).map((emp: any) => (
                     <div
                         key={emp.id}
                         onClick={() => handleMovieClick(emp)}

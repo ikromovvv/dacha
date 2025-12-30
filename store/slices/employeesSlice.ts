@@ -18,6 +18,7 @@ export interface Employee {
 interface EmployeesState {
   employees: Employee[];
   currentEmployee: Employee | null;
+  menuItem: any
 }
 
  const initialEmployees: Employee[] = [
@@ -171,13 +172,20 @@ const employeesSlice = createSlice({
   initialState: {
     employees: initialEmployees,
     currentEmployee: null,
+    menuItem: {}
   } as EmployeesState,
   reducers: {
       setCurrentEmployee: (state, action: PayloadAction<Employee | null>) => {
       state.currentEmployee = action.payload;
     },
+
+    setMenuItem : (state , action) => {
+        // @ts-ignore
+      state.menuItem = action.payload
+    }
+
   },
 });
 
-export const { setCurrentEmployee } = employeesSlice.actions;
+export const { setCurrentEmployee , setMenuItem } = employeesSlice.actions;
 export default employeesSlice.reducer;

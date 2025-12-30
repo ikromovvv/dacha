@@ -6,7 +6,7 @@ import Header from "@/components/header/header"
 
 
 import {MainMenu} from "@/components/menu/menu";
-import {usePathname} from "next/navigation";
+import {useParams, usePathname} from "next/navigation";
 
 
 const CATEGORIES = ["All", "Action", "Thriller", "Sci-Fi", "Drama", "Comedy", "Adventure", "Primyera"]
@@ -14,7 +14,7 @@ const CATEGORIES = ["All", "Action", "Thriller", "Sci-Fi", "Drama", "Comedy", "A
 export default function MenuHeader() {
 
     const [activeMenu, setActiveMenu] = useState(false)
-
+    const { id} = useParams()
 
     const pathname = usePathname(); // masalan: /key-list
 
@@ -24,7 +24,7 @@ export default function MenuHeader() {
 
             <Header setActiveMenu={setActiveMenu} activeMenu={activeMenu}/>
             {/*<div className={""}>*/}
-            {pathname !==  "/key-list" &&
+            {!id &&
                 <MainMenu/>}
             {/*</div>*/}
         </div>

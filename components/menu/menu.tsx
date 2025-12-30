@@ -4,6 +4,7 @@ import { menuConfigItem } from "@/components/menu/menuConfig/menuConfigItem";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { setActiveMenuName } from "@/store/slices/headerSlice";
+import {setMenuItem} from "@/store/slices/employeesSlice";
 
 export const MainMenu = () => {
     const router = useRouter();
@@ -18,11 +19,11 @@ export const MainMenu = () => {
         const savedItem = localStorage.getItem("activeMenuItem");
 
         const defaultKey = menuConfigItem[0]?.key;
-        const defaultName = menuConfigItem[0]?.description;
+        const defaultName = menuConfigItem[0]?.label;
 
         setActiveMenuLabel(savedName || defaultName);
         setActiveMenuItem(savedItem || defaultKey);
-        dispatch(setActiveMenuName(savedName || defaultName));
+        dispatch(setActiveMenuName(defaultKey));
     }, []);
 
     // Handle menu click
@@ -35,9 +36,11 @@ export const MainMenu = () => {
 
         setActiveMenuItem(key);
         setActiveMenuLabel(menuItem?.description || "");
-        dispatch(setActiveMenuName(menuItem?.description || ""));
+        dispatch(setActiveMenuName(menuItem?.key || ""));
 
-        router.push("/" + key);
+        // router.push("/" + key);
+        dispatch(setMenuItem(menuItem))
+
     };
 
     return (

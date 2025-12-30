@@ -9,20 +9,27 @@ import {List, Input, Button, Form, Rate} from "antd";
 import {useEffect, useState} from "react";
 import EmployeeInfo from "@/components/user-info/movie-info";
 import {API_URL, headers, useHttp} from "@/api/api";
+import {Riple} from "react-loading-indicators";
 
 export const MovieDetail = ({id}: any) => {
 
     const [emp, setEmp] = useState({})
-    const {request} = useHttp()
 
+    const [loading , setLoading] = useState(true)
+
+    const {request} = useHttp()
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, [id]);
     useEffect(() => {
 
         request(`${API_URL}auth/users/${id}`, "GET", null, headers())
             .then(res => {
                 console.log(res)
                 setEmp(res)
+                setLoading(false)
             })
-    }, [])
+    }, [id])
 
     const [comments, setComments] = useState<
         { author: string; content: string; rating: number }[]
@@ -58,6 +65,12 @@ export const MovieDetail = ({id}: any) => {
                 </div>
             </div>
         );
+    }
+
+    if(loading) {
+
+
+        return <div style={{position: "absolute" ,  top: "50%" , left: "50%" , transform: "translate(-50%, -50%)"}}> <Riple color="#548954" size="large" text="" textColor=""  /></div>
     }
 
     return (

@@ -6,7 +6,7 @@ import type React from "react"
 import { Provider } from "react-redux"
 import store from "@/store/store"
 import MenuHeader from "@/app/components/menuHeader/menuHeader";
-import {usePathname} from "next/navigation";
+import {useParams, usePathname} from "next/navigation";
 
 
 export default function ClientLayout({
@@ -17,11 +17,13 @@ export default function ClientLayout({
 
     const pathname = usePathname(); // masalan: /key-list
 
+    const {id} = useParams()
+
     return (
       <Provider store={store}>
           <MenuHeader />
 
-          <div style={{marginTop: pathname !=="/key-list" ? "150px" : "100px"}}>
+          <div style={{marginTop: !id ? "150px" : "100px"}}>
               {children}
           </div>
       </Provider>
