@@ -51,7 +51,7 @@ export default function MovieGrid() {
         }
     };
 
-    if (employer.length === 0 && !loading) {
+    if (employer.filter((emp : any) => emp?.role?.name === activeMenuName)?.length === 0 && !loading) {
         return (
             <div className="text-center py-12">
                 <p className="text-2xl text-muted-foreground">Hozircha foydalanuvchilar yo'q</p>
