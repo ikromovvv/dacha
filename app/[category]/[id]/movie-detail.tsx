@@ -25,7 +25,7 @@ export const MovieDetail = ({id}: any) => {
 
         request(`${API_URL}auth/users/${id}`, "GET", null, headers())
             .then(res => {
-                console.log(res)
+
                 setEmp(res)
                 setLoading(false)
             })

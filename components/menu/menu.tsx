@@ -1,68 +1,47 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import { useEffect, useState } from "react";
 import { menuConfigItem } from "@/components/menu/menuConfig/menuConfigItem";
-import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { setActiveMenuName } from "@/store/slices/headerSlice";
-import {setMenuItem} from "@/store/slices/employeesSlice";
+import {setActiveMenuName} from "@/store/slices/headerSlice";
+import {useDispatch} from "react-redux";
 
 export const MainMenu = () => {
-    const router = useRouter();
-    const dispatch = useDispatch();
+    const [activeKey, setActiveKey] = useState<string | undefined>("");
 
-    const [activeMenuName, setActiveMenuLabel] = useState<string | any>(null);
-    const [activeMenuItem, setActiveMenuItem] = useState<string | any>(null);
+    const key =     localStorage.getItem("key")
 
-    // Load active menu from localStorage on mount
+    const dispatch = useDispatch()
     useEffect(() => {
-        const savedName = localStorage.getItem("activeMenuName");
-        const savedItem = localStorage.getItem("activeMenuItem");
-
-        const defaultKey = menuConfigItem[0]?.key;
-        const defaultName = menuConfigItem[0]?.label;
-
-        setActiveMenuLabel(savedName || defaultName);
-        setActiveMenuItem(savedItem || defaultKey);
-        dispatch(setActiveMenuName(defaultKey));
+         setActiveKey(key ? key : menuConfigItem[0]?.key);
     }, []);
 
-    // Handle menu click
-    const onClick = (key: string | number | any) => {
-        const menuItem = menuConfigItem.find((item) => item.key === key);
+    useEffect(() => {
+        dispatch(setActiveMenuName(activeKey))
+    } , [activeKey])
 
-        localStorage.setItem("activeMenuItem", key);
-        localStorage.setItem("activeMenuName", menuItem?.description || "");
-        localStorage.setItem("activeMenuLabel", menuItem?.label || "");
 
-        setActiveMenuItem(key);
-        setActiveMenuLabel(menuItem?.description || "");
-        dispatch(setActiveMenuName(menuItem?.key || ""));
-
-        // router.push("/" + key);
-        dispatch(setMenuItem(menuItem))
+    const onClick = (key: string | undefined) => {
+        setActiveKey(key);
 
     };
 
     return (
         <div className="w-full bg-white border-b shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4 sm:gap-6 overflow-x-auto scrollbar-hide">
-
-                {menuConfigItem.map((item) => (
-                    <div
+            <div className="max-w-7xl mx-auto px-4 py-3 flex gap-4 overflow-x-auto">
+                {menuConfigItem.map(item => (
+                    <button
                         key={item.key}
                         onClick={() => onClick(item.key)}
                         className={`
-                            px-3 sm:px-4 py-2 rounded-md cursor-pointer whitespace-nowrap 
-                            transition-all duration-200 text-sm sm:text-base
-                            ${activeMenuItem === item.key
-                            ? "bg-blue-600 text-white shadow"
-                            : "text-gray-800 hover:bg-gray-100"}
+                            px-4 py-2 rounded-md
+                            ${activeKey === item.key
+                            ? "bg-blue-600 text-white"
+                            : "hover:bg-gray-100"}
                         `}
                     >
                         {item.label}
-                    </div>
+                    </button>
                 ))}
-
             </div>
         </div>
     );

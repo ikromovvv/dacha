@@ -8,7 +8,14 @@ import { Menu, X, Globe } from "lucide-react"
 import { useMediaQuery } from "@/hooks/use-mobile"
 import { Input } from "antd"
 import { AuthorizationPage } from "@/components/authorization/authorizationPage"
+import { Modal } from "antd";
 
+import {
+    EnvironmentOutlined,
+    PhoneOutlined,
+    MailOutlined,
+    ClockCircleOutlined
+} from "@ant-design/icons";
 const { Search } = Input
 
 export default function Header({
@@ -26,7 +33,7 @@ export default function Header({
     const [active, setActive] = useState(false)
     const { activeMenuName } = useSelector((state: RootState) => state.header)
     const [language, setLanguage] = useState("UZ") // Default til
-
+    const [open, setOpen] = useState(false);
     const isMobileTitle = useMediaQuery("(max-width: 400px)")
     const isMobileDesc = useMediaQuery("(max-width: 700px)")
 
@@ -64,7 +71,7 @@ export default function Header({
                     {/*)}*/}
 
                     <div>
-                        <h1 className="text-[16px] font-bold">Dachniki</h1>
+                        <h1 className="text-[16px] font-bold">Xizmatlar</h1>
                         {!isMobileDesc && (
                             <h2 className="text-[12px] text-[grey] sm:block hidden max-w-[400px] truncate">
                                 {activeMenuName}
@@ -111,43 +118,100 @@ export default function Header({
                 {/*    </div>*/}
 
                 {/*    /!* Language selector *!/*/}
-                    <div className="relative">
-                        <button
-                            onClick={() => setLangDropdown(!langDropdown)}
-                            className="w-[40px] h-[40px] rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center"
-                        >
-                            <Globe size={20} />
-                        </button>
+                {/*    <div className="relative">*/}
+                {/*        <button*/}
+                {/*            onClick={() => setLangDropdown(!langDropdown)}*/}
+                {/*            className="w-[40px] h-[40px] rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center"*/}
+                {/*        >*/}
+                {/*            <Globe size={20} />*/}
+                {/*        </button>*/}
 
-                        {langDropdown && (
-                            <div className="absolute right-0 mt-2 w-[120px] bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden">
-                                <button
-                                    onClick={() => changeLanguage("UZ")}
-                                    className={`w-full text-left px-4 py-2 hover:bg-muted transition ${
-                                        language === "UZ" ? "font-bold" : ""
-                                    }`}
-                                >
-                                    Uzbek
-                                </button>
-                                <button
-                                    onClick={() => changeLanguage("RU")}
-                                    className={`w-full text-left px-4 py-2 hover:bg-muted transition ${
-                                        language === "RU" ? "font-bold" : ""
-                                    }`}
-                                >
-                                    Russian
-                                </button>
-                                <button
-                                    onClick={() => changeLanguage("EN")}
-                                    className={`w-full text-left px-4 py-2 hover:bg-muted transition ${
-                                        language === "EN" ? "font-bold" : ""
-                                    }`}
-                                >
-                                    English
-                                </button>
-                            </div>
-                        )}
+                {/*        {langDropdown && (*/}
+                {/*            <div className="absolute right-0 mt-2 w-[120px] bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden">*/}
+                {/*                <button*/}
+                {/*                    onClick={() => changeLanguage("UZ")}*/}
+                {/*                    className={`w-full text-left px-4 py-2 hover:bg-muted transition ${*/}
+                {/*                        language === "UZ" ? "font-bold" : ""*/}
+                {/*                    }`}*/}
+                {/*                >*/}
+                {/*                    Uzbek*/}
+                {/*                </button>*/}
+                {/*                <button*/}
+                {/*                    onClick={() => changeLanguage("RU")}*/}
+                {/*                    className={`w-full text-left px-4 py-2 hover:bg-muted transition ${*/}
+                {/*                        language === "RU" ? "font-bold" : ""*/}
+                {/*                    }`}*/}
+                {/*                >*/}
+                {/*                    Russian*/}
+                {/*                </button>*/}
+                {/*                <button*/}
+                {/*                    onClick={() => changeLanguage("EN")}*/}
+                {/*                    className={`w-full text-left px-4 py-2 hover:bg-muted transition ${*/}
+                {/*                        language === "EN" ? "font-bold" : ""*/}
+                {/*                    }`}*/}
+                {/*                >*/}
+                {/*                    English*/}
+                {/*                </button>*/}
+                {/*            </div>*/}
+                {/*        )}*/}
+                {/*    </div>*/}
+                    <div onClick={() => setOpen(true)} className={"cursor-pointer"}>
+                        Bog'lanish
                     </div>
+                    <Modal
+                        open={open}
+                        onCancel={() => setOpen(false)}
+                        footer={null}
+                        centered
+                        width={900}
+                        className="contact-modal"
+                    >
+                        <div className="text-center mb-6">
+                            <h2 className="text-2xl font-bold">Biz bilan bog‘laning</h2>
+                            <p className="text-gray-500 mt-1">
+                                Sizga qulay usulni tanlang
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            {/* Ofis */}
+                            <InfoCard
+                                icon={<EnvironmentOutlined />}
+                                title="Ofis manzili"
+                                text={[
+                                    "Tashkent viloyati, Bostanliq tumani",
+                                    "Xujakent ",
+                                ]}
+                            />
+
+                            {/* Telefon */}
+                            <InfoCard
+                                icon={<PhoneOutlined />}
+                                title="Telefon"
+                                text={[
+                                    "+998 95 104 04 04",
+                                    "+998 99 990 68 05"
+                                ]}
+                            />
+
+                            {/* Bog'lanish */}
+                            <InfoCard
+                                icon={<MailOutlined />}
+                                title="Biz bilan bog‘lanish"
+                                text={[
+                                    "Telegram: @shobdikarimov",
+                                ]}
+                                highlight
+                            />
+
+                            {/* Ish vaqti */}
+                            <InfoCard
+                                icon={<ClockCircleOutlined />}
+                                title="Ish vaqti"
+                                text={["Har kuni: 24/7"]}
+                            />
+                        </div>
+                    </Modal>
                 </div>
             </div>
 
@@ -155,3 +219,38 @@ export default function Header({
         </header>
     )
 }
+const InfoCard = ({
+                      icon,
+                      title,
+                      text,
+                      highlight = false
+                  }: {
+    icon: React.ReactNode;
+    title: string;
+    text: string[];
+    highlight?: boolean;
+}) => (
+    <div className="flex gap-4 p-5 rounded-xl border bg-white shadow-sm hover:shadow-md transition">
+        <div
+            className={`
+                w-12 h-12 flex items-center justify-center rounded-lg
+                ${highlight ? "bg-orange-100 text-orange-500" : "bg-orange-50 text-orange-400"}
+                text-xl
+            `}
+        >
+            {icon}
+        </div>
+
+        <div>
+            <h3 className="font-semibold mb-1">{title}</h3>
+            {text.map((item, i) => (
+                <p
+                    key={i}
+                    className={`text-sm ${highlight ? "text-orange-500" : "text-gray-600"}`}
+                >
+                    {item}
+                </p>
+            ))}
+        </div>
+    </div>
+);
