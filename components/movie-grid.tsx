@@ -19,7 +19,9 @@ export default function MovieGrid() {
     const {activeMenuName} = useSelector((state: RootState) => state.header)
 
 
-    localStorage.setItem("key" , activeMenuName)
+    if(activeMenuName){
+        localStorage.setItem("key" , activeMenuName)
+    }
 
     useEffect(() => {
         request(`${API_URL}auth/users/`, "GET", null, headers())
