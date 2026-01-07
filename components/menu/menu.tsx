@@ -2,27 +2,31 @@
 
 import { useEffect, useState } from "react";
 import { menuConfigItem } from "@/components/menu/menuConfig/menuConfigItem";
-import {setActiveMenuName} from "@/store/slices/headerSlice";
-import {useDispatch} from "react-redux";
+import { setActiveMenuName } from "@/store/slices/headerSlice";
+import { useDispatch } from "react-redux";
 
 export const MainMenu = () => {
     const [activeKey, setActiveKey] = useState<string | undefined>("");
 
-    const key = localStorage.getItem("key")
+    const [key , setKey] = useState(localStorage.getItem("key"))
+    const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
     useEffect(() => {
-         setActiveKey(key ? key : menuConfigItem[0]?.key);
+        // localStorage faqat clientda ishlaydi
+
+        setActiveKey(key ? key : menuConfigItem[0]?.key);
     }, []);
 
-    useEffect(() => {
-        dispatch(setActiveMenuName(activeKey))
-    } , [activeKey])
 
+    useEffect(() => {
+        if (activeKey) {
+            dispatch(setActiveMenuName(activeKey));
+            // localStorage.setItem("key", activeKey); // clientda saqlash
+        }
+    }, [activeKey]);
 
     const onClick = (key: string | undefined) => {
         setActiveKey(key);
-
     };
 
     return (
@@ -36,7 +40,8 @@ export const MainMenu = () => {
                             px-4 py-2 rounded-md
                             ${activeKey === item.key
                             ? "bg-blue-600 text-white"
-                            : "hover:bg-gray-100"}
+                            : "hover:bg-gray-100"
+                        }
                         `}
                     >
                         {item.label}
