@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 export const MainMenu = () => {
     const [activeKey, setActiveKey] = useState<string | undefined>("");
 
-    const [key , setKey] = useState(localStorage.getItem("key"))
+    const [key , setKey] = useState(localStorage?.getItem("key"))
     const dispatch = useDispatch();
 
     useEffect(() => {

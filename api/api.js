@@ -11,9 +11,9 @@ export const API_URL = `${API_URL_DOC}api/`
 
 
 export const headers = () => {
-    const token = sessionStorage.getItem("token")
+    // const token = sessionStorage.getItem("token")
     return {
-        "Authorization": "JWT " + token,
+        // "Authorization": "JWT " + token,
         'Content-Type': 'application/json'
     }
 }
@@ -32,24 +32,9 @@ export const headerImg = () => {
 }
 
 
-export const headersImg = () => {
-    const token = sessionStorage.getItem("token")
-    return {
-        "Authorization": "JWT " + token
-    }
-}
 
 
-export const branchQuery = () => {
-    const branch = localStorage.getItem("selectedBranch")
-    return `branch=${branch}`
 
-}
-
-export const branchQueryId = () => {
-    return localStorage.getItem("selectedBranch")
-
-}
 
 
 export const useHttp = () => {
