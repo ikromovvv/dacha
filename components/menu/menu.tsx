@@ -8,15 +8,13 @@ import { useDispatch } from "react-redux";
 export const MainMenu = () => {
     const [activeKey, setActiveKey] = useState<string | undefined>("");
 
-    const [key , setKey] = useState(localStorage?.getItem("key"))
     const dispatch = useDispatch();
 
     useEffect(() => {
         // localStorage faqat clientda ishlaydi
-
+        const key =  localStorage.getItem("key");
         setActiveKey(key ? key : menuConfigItem[0]?.key);
     }, []);
-
 
     useEffect(() => {
         if (activeKey) {
