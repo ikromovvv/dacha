@@ -71,7 +71,7 @@ export default function Header({
                     {/*)}*/}
 
                     <div>
-                        <h1 className="text-[16px] font-bold">Xizmatlar</h1>
+                        <h1 className="text-[16px] font-bold">XIZMATLAR</h1>
                         {!isMobileDesc && (
                             <h2 className="text-[12px] text-[grey] sm:block hidden max-w-[400px] truncate">
                                 {activeMenuName}
