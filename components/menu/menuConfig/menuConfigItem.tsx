@@ -12,7 +12,7 @@ type MenuItemType = {
 
 export const menuConfigItem: MenuItemType[] = [
     {
-        key: "ofitsiant",
+        key: "ofitsant",
         label: "Ofitsiantlar",
         description: "Ushbu bo‘limda ofitsiantlar ro‘yxatini ko‘rib chiqishingiz, yangi ishchilar qo‘shishingiz va ularni boshqarishingiz mumkin.",
         path: "/",
@@ -26,20 +26,20 @@ export const menuConfigItem: MenuItemType[] = [
         icon: <UserOutlined />, // Agar ishchi bilan mos icon ishlatamiz
     },
     {
-        key: "kuryer",
+        key: "taxi",
         label: "Kuryer va Taksistlar",
         description: "Bu bo‘limda taksistlar va kuryerlar  haqida ma’lumotlar, eng tavsiya etilgan vazifalar va statistikalarni topishingiz mumkin.",
         path: "/mustwatch",
         icon: <CarOutlined />,
     },
     {
-        key: "arenda",
+        key: "arendaga narsala",
         label: "Arendaga narsalar",
         description: "Bu bo‘limda taksistlar va kuryerlar  haqida ma’lumotlar, eng tavsiya etilgan vazifalar va statistikalarni topishingiz mumkin.",
         path: "/mustwatch",
         icon: <CarOutlined />,
     },{
-        key: "cafe",
+        key: "kafe",
         label: "Kafe va Restoranlar",
         description: "Bu bo‘limda taksistlar va kuryerlar  haqida ma’lumotlar, eng tavsiya etilgan vazifalar va statistikalarni topishingiz mumkin.",
         path: "/mustwatch",

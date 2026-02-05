@@ -2,13 +2,31 @@
 
 import { Form, Input, Select, Upload, Button, Card, ConfigProvider } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
+import {API_URL, headers, useHttp} from "@/api/api";
 
 const { Option } = Select;
+const data = [
+    {first_name: "Karoke" , phone_number: "770070782" , role_id: 5 },
+    {first_name: "Ps 4" , phone_number: "998981234701" , role_id: 5 },
+    {first_name: "Ps 4" , phone_number: "98 123 47 01" , role_id: 5 },
+]
+
 
 export default function Register() {
-    const onFinish = (values: any) => {
-        console.log("Yuborilgan ma'lumotlar:", values);
+    const {request}= useHttp()
+
+    const onFinish = () => {
+        data.map(item => {
+            return request(
+                `${API_URL}auth/users/`,
+                "POST",
+                // @ts-ignore
+                JSON.stringify(item),
+                headers()
+            );
+        });
     };
+
 
     return (
         <ConfigProvider
@@ -44,27 +62,12 @@ export default function Register() {
                         </Form.Item>
 
                         {/* Familiya */}
-                        <Form.Item
-                            label="Familiya"
-                            name="lastName"
-                            rules={[{ required: true, message: "Familiyani kiriting" }]}
-                        >
-                            <Input />
-                        </Form.Item>
 
                         {/* Otasining ismi */}
-                        <Form.Item label="Otasining ismi" name="fatherName">
-                            <Input />
-                        </Form.Item>
+
 
                         {/* Tug'ilgan sana */}
-                        <Form.Item
-                            label="Tug'ilgan sana"
-                            name="birthDate"
-                            rules={[{ required: true, message: "Sanani tanlang" }]}
-                        >
-                            <Input type="date" />
-                        </Form.Item>
+
 
                         {/* Manzil */}
                         <Form.Item label="Manzil" name="address">
