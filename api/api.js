@@ -1,7 +1,8 @@
 // export const API_URL_DOC = `http://192.168.0.101:8000/`
 // export const API_URL_DOC = `http://26.196.249.247:8000/`
 // export const API_URL_DOC = `http://26.253.30.50:8000/`//
-export const API_URL_DOC = `http://64.227.55.1:8000/`
+// export const API_URL_DOC = `http://64.227.55.1:8000/`
+export const API_URL_DOC = `https://test.dachavip.uz/`
 
 // export const API_URL_DOC = `https://dacha-sardor.onrender.com/`
 export const API_URL = `${API_URL_DOC}api/`
